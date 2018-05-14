@@ -232,7 +232,7 @@ $(document).ready(function()
 		var data = { number_locale: $("#number_locale").val() };
 		data[field] = value;
 		$.post("<?php echo site_url($controller_name . '/ajax_check_number_locale')?>",
-			$.extend(csrf_form_base(), data),
+			data,
 			function(response) {
 				$("#number_locale_example").text(response.number_locale_example);
 			},
@@ -251,10 +251,10 @@ $(document).ready(function()
 				{
 					url: "<?php echo site_url($controller_name . '/ajax_check_number_locale')?>",
 					type: 'post',
-					data: $.extend(csrf_form_base(), {
+					data: {
 						'number_locale': $("#number_locale").val(),
 						'thousands_separator': $("#thousands_separator").is(":checked")
-					}),
+					},
 					dataFilter: function(data) {
 						setup_csrf_token();
 						var response = JSON.parse(data);
